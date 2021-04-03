@@ -1,0 +1,5 @@
+/.idea
+/venv
+/app.py
+/audio.mp3
+/pywhatkit_dbs.txt
