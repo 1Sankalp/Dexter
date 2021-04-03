@@ -1,0 +1,4 @@
+asyncpraw~=7.2.0
+discord~=1.0.1
+wikipedia~=1.4.0
+python-dotenv~=0.16.0
