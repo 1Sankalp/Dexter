@@ -6,12 +6,8 @@ import time
 from datetime import date
 import random
 import datetime
-import webbrowser
 import wikipedia
 #from pygame import mixer
-from win32com.client import Dispatch
-speak = Dispatch("SAPI.Spvoice")
-
 #client_id = m1Xu8ChRC5X5kg
 #secret = mjMj7Q-Oglx0GwWsV7BdINuc8tSHhw
 
@@ -63,11 +59,11 @@ async def on_message(message):
 			else:
 				await message.channel.send("Good Evening Sir !", tts=True)
 
-	elif message.content in video:
-		await message.channel.send(webbrowser.open('www.youtube.com'))
+	#elif message.content in video:
+		#await message.channel.send(webbrowser.open('www.youtube.com'))
 
-	elif message.content in google:
-		await message.channel.send(webbrowser.open('www.google.com'))
+	#elif message.content in google:
+		#await message.channel.send(webbrowser.open('www.google.com'))
 
 	elif message.content == 'news':
 		import requests
