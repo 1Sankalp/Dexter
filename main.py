@@ -7,6 +7,7 @@ from datetime import date
 import random
 import datetime
 import wikipedia
+import ecapture
 #from pygame import mixer
 #client_id = m1Xu8ChRC5X5kg
 #secret = mjMj7Q-Oglx0GwWsV7BdINuc8tSHhw
@@ -24,6 +25,7 @@ greet = ['Hello, Sir',"It's a pleasure to meet you, Sir","Hello Sir, It's a plea
 ask = ['sup dex','Sup Dex','Sup Dexter','sup dexter','hey dex','Hey Dex','hey dexter','Hey Dexter','hi dex','Hi Dex','hi dexter','Hi Dexter','hey d','Hey D']
 video = ['open youtube','Open Youtube', 'open yt','Open YT']
 google = ['open google','Open Google','open g','Open G']
+city = ['agartala','agra','ahemdabad','ajmer','allahabad','ambala','amritsar','bhopal','chennai','chandigarh','coorg','dehradun','goa','gwalior','hydrabad','jabalpur','kanpur','kolkata','lucknow','mumbai','mysore','nagpur','navi mumbai','new delhi','delhi','ooty','pune','raipur','rajhasthan','rajkot','rishikesh','indore','shimla','tirupur','udaipur','ujjain']
 
 
 @bot.event
@@ -118,7 +120,7 @@ async def on_message(message):
 				url = ("https://www.reddit.com" + submission.permalink)
 			reply = f"<@!{message.author.id}>\n{submission.title}\n{txt}\n{obj}\n{url}"
 		if len(reply) != 0:
-			await  message.channel.send(reply)
+			await message.channel.send(reply)
 
 	elif message.content == "help":
 		embed = discord.Embed(title="Help on BOT", description="Some useful commands")
@@ -127,6 +129,43 @@ async def on_message(message):
 		embed.add_field(name="time", value="Gives the curent Time")
 		embed.add_field(name="date", value="Gives the current Date")
 		await message.channel.send(content=None, embed=embed)
+
+	elif message.content in city:
+		import requests, json
+		# base URL
+		BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
+		# City Name CITY = "Hyderabad"
+		# API key API_KEY = "Your API Key"
+		# upadting the URL
+		URL = BASE_URL + "q=" + message.content + "&appid=" + '11ae50ac9474c2111ed60e7622a5b6e9'
+
+		# HTTP request
+		response = requests.get(URL)
+
+		# checking the status code of the request
+
+
+		if response.status_code == 200:
+			# getting data in the json format
+			data = response.json()
+			# getting the main dict block
+			main = data['main']
+			# getting temperature
+			temperature = main['temp'] - 273.15
+
+			# getting the humidity
+			humidity = main['humidity']
+			# getting the pressure
+			# weather report
+			report = data['weather']
+			await message.channel.send(f"{message.content:-^30}")
+			await message.channel.send(f'Temperature: {temperature}')
+			await message.channel.send(f"Humidity: {humidity}")
+			await message.channel.send(f"Weather Report: {report[0]['description']}")
+		else:
+			await message.channel.send("Error in the HTTP request")
+
+
 
 
 
