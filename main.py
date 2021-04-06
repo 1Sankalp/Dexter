@@ -6,11 +6,7 @@ import time
 from datetime import date
 import random
 import datetime
-import wikipedia
-import ecapture
-#from pygame import mixer
-#client_id = m1Xu8ChRC5X5kg
-#secret = mjMj7Q-Oglx0GwWsV7BdINuc8tSHhw
+
 
 bot = discord.Client()
 
