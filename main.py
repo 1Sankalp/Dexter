@@ -6,7 +6,7 @@ import time
 from datetime import date
 import random
 import datetime
-
+import wikipedia
 
 bot = discord.Client()
 
@@ -23,7 +23,17 @@ video = ['open youtube','Open Youtube', 'open yt','Open YT']
 google = ['open google','Open Google','open g','Open G']
 city = ['agartala','agra','ahemdabad','ajmer','allahabad','ambala','amritsar','bhopal','chennai','chandigarh','coorg','dehradun','goa','gwalior','hydrabad','jabalpur','kanpur','kolkata','lucknow','mumbai','mysore','nagpur','navi mumbai','new delhi','delhi','ooty','pune','raipur','rajhasthan','rajkot','rishikesh','indore','shimla','tirupur','udaipur','ujjain']
 
-
+def wiki_summary(arg):
+    definition = wikipedia.summary(arg, sentences=3, chars=100,
+    auto_suggest=True, redirect=True)
+    return definition
+''''@bot.event
+async def on_message(message):
+	words = message.content.split()
+	if words[0].lower() == "define":
+	   important_words = words[1:]
+	await bot.send_message(message.channel, wiki_summary(important_words))
+'''
 @bot.event
 async def on_message(message):
 
@@ -161,7 +171,10 @@ async def on_message(message):
 		else:
 			await message.channel.send("Error in the HTTP request")
 
-
+	words = message.content.split()
+	if words[0].lower() == "define":
+		important_words = words[1:]
+	await message.channel.send(wiki_summary(important_words))
 
 
 
