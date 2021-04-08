@@ -27,13 +27,7 @@ def wiki_summary(arg):
     definition = wikipedia.summary(arg, sentences=3, chars=100,
     auto_suggest=True, redirect=True)
     return definition
-''''@bot.event
-async def on_message(message):
-	words = message.content.split()
-	if words[0].lower() == "define":
-	   important_words = words[1:]
-	await bot.send_message(message.channel, wiki_summary(important_words))
-'''
+
 @bot.event
 async def on_message(message):
 
@@ -66,12 +60,6 @@ async def on_message(message):
 
 			else:
 				await message.channel.send("Good Evening Sir !", tts=True)
-
-	#elif message.content in video:
-		#await message.channel.send(webbrowser.open('www.youtube.com'))
-
-	#elif message.content in google:
-		#await message.channel.send(webbrowser.open('www.google.com'))
 
 	elif message.content == 'news':
 		import requests
@@ -171,10 +159,44 @@ async def on_message(message):
 		else:
 			await message.channel.send("Error in the HTTP request")
 
+
+	elif message.content == 'countdown':
+		while True:
+			await message.channel.send('Initiating Countdown')
+			time.sleep(1)
+			await message.channel.send('10')
+			time.sleep(1)
+			await message.channel.send('9')
+			time.sleep(1)
+			await message.channel.send('8')
+			time.sleep(1)
+			await message.channel.send('7')
+			time.sleep(1)
+			await message.channel.send('6')
+			time.sleep(1)
+			await message.channel.send('5')
+			time.sleep(1)
+			await message.channel.send('4')
+			time.sleep(1)
+			await message.channel.send('3')
+			time.sleep(1)
+			await message.channel.send('2')
+			time.sleep(1)
+			await message.channel.send('1')
+			time.sleep(1)
+			await message.channel.send('TIME UP!!!')
+			break
+
+
+
 	words = message.content.split()
 	if words[0].lower() == "define":
 		important_words = words[1:]
 	await message.channel.send(wiki_summary(important_words))
+
+
+
+
 
 
 
