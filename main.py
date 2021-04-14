@@ -7,10 +7,10 @@ from datetime import date
 import random
 import datetime
 import wikipedia
-import bs4, requests
 
 
 bot = discord.Client()
+client = discord.Client()
 
 reddit_client = asyncpraw.Reddit(
     client_id="m1Xu8ChRC5X5kg",
@@ -187,7 +187,9 @@ async def on_message(message):
 			await message.channel.send('TIME UP!!!')
 			break
 
-
+	elif message.content == 'delete':
+		deleted = await message.channel.purge(limit=10)
+		await message.channel.send('All messages deleted.'.format(deleted))
 
 		words = message.content.split()
 		if words[0].lower() == "define":
