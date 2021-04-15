@@ -28,7 +28,7 @@ def wiki_summary(arg):
 
 @bot.event
 async def on_message(message):
-    global important_words
+
     if message.content == 'hello':
         await message.channel.send(random.choice(greet))
 
@@ -189,11 +189,10 @@ async def on_message(message):
         deleted = await message.channel.purge(limit=11)
         await message.channel.send('All messages deleted.'.format(deleted))
 
-        words = message.content.split()
-        if words[0].lower() == "define":
-            important_words = words[1:]
-        await message.channel.send(wiki_summary(important_words))
-
+    words = message.content.split()
+    if words[0].lower() == "define":
+        important_words = words[1:]
+    await message.channel.send(wiki_summary(important_words))
 
 
 
