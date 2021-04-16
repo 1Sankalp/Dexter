@@ -39,9 +39,9 @@ async def on_message(message):
         await message.channel.send("Hello, Illusion", tts=True)
 
     elif message.content == 'time':
-        current_time = time.strftime('%H:%M:%S')
-        asia = current_time
-        await message.channel.send(asia)
+        curr_time = time.localtime()
+        curr_clock = time.strftime("%H:%M:%S", curr_time)
+        await message.channel.send(curr_clock)
 
     elif message.content == 'date':
         today = date.today()
