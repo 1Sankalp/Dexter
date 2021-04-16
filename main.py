@@ -40,7 +40,8 @@ async def on_message(message):
 
     elif message.content == 'time':
         current_time = time.strftime('%H:%M:%S')
-        await message.channel.send(current_time)
+        asia = current_time
+        await message.channel.send(asia)
 
     elif message.content == 'date':
         today = date.today()
