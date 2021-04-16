@@ -3,11 +3,11 @@ import discord
 import os
 from dotenv import load_dotenv
 import time
-from datetime import date
+from datetime import date, datetime
 import random
 import datetime
 import wikipedia
-
+import pytz
 
 bot = discord.Client()
 
@@ -39,9 +39,8 @@ async def on_message(message):
         await message.channel.send("Hello, Illusion", tts=True)
 
     elif message.content == 'time':
-        curr_time = time.localtime()
-        curr_clock = time.strftime("%H:%M:%S", curr_time)
-        await message.channel.send(curr_clock)
+        IST = pytz.timezone('Asia/Kolkata')
+        await message.channel.send(datetime.now(IST))
 
     elif message.content == 'date':
         today = date.today()
