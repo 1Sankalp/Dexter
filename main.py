@@ -40,7 +40,7 @@ async def on_message(message):
 
     elif message.content == 'time':
         timeZ_Kl = pytz.timezone('Asia/Kolkata')
-        dt_Kl = datetime.now(timeZ_Kl)
+        dt_Kl = datetime.datetime.now(timeZ_Kl)
         await message.channel.send(dt_Kl.strftime('%H:%M:%S'))
 
     elif message.content == 'date':
