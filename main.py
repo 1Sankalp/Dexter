@@ -39,8 +39,9 @@ async def on_message(message):
         await message.channel.send("Hello, Illusion", tts=True)
 
     elif message.content == 'time':
-        IST = pytz.timezone('Asia/Kolkata')
-        await message.channel.send(datetime.now(IST))
+        timeZ_Kl = pytz.timezone('Asia/Kolkata')
+        dt_Kl = datetime.now(timeZ_Kl)
+        await message.channel.send(dt_Kl.strftime('%H:%M:%S'))
 
     elif message.content == 'date':
         today = date.today()
